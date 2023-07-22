@@ -10,6 +10,7 @@
     "start": "electron ."
   },
   "dependencies": {
+    "electron-builder": "^24.4.0",
     "electron-context-menu": "3.6.1",
     "electron-reload": "^2.0.0-alpha.1",
     "get-website-favicon": "^0.0.7",
