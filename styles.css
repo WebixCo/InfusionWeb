@@ -96,7 +96,6 @@ body {
     position: relative;
     top:-1px
 } */
-.navbar>span.parent{}
 .sidebar{
     box-sizing: border-box;
     width: 12vw;
@@ -109,7 +108,7 @@ body {
     backdrop-filter: blur(8.399999618530273px);
     padding: 12px;
     min-width:200px;
-    max-width: 400px;
+    
 
 }
 

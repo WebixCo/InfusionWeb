@@ -1,22 +1,22 @@
 {
   "name": "pumped-temper-think-snhuh",
-  "productName": "Flame Browser",
-  "description": "My Electron application description",
+  "productName": "Flame Next",
+  "description": "A semi-revolutionary browser for most (if not all) desktop platforms.",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
-  "author": "techs",
+  "author": "Fox's Den (foxsden.glitch.me",
   "scripts": {
     "start": "electron ."
   },
   "dependencies": {
-    "electron-builder": "^24.4.0",
-    "electron-context-menu": "3.6.1",
+       "electron-context-menu": "3.6.1",
     "electron-reload": "^2.0.0-alpha.1",
     "get-website-favicon": "^0.0.7",
     "request": "^2.88.2"
   },
   "devDependencies": {
+	  "electron-builder": "^24.4.0", 
     "electron": "^22.0.2"
   }
 }
