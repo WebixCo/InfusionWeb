@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  
+  <link href="./styles.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World!</title>
+</head>
+
+<body>
+  <div class="drag"></div>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="sidebar">
+            <div class="title ib"><img style="margin-bottom: 10px;" src="logo text.svg" width="80"><div class="ib" style="margin-left: 2vw;min-width: 100%;"><button class="mso wincontrols ib" onclick="ipcRenderer.send('min')">&#xf88a;</button><button onclick="ipcRenderer.send('minmax')" class="mso wincontrols">&#xe835;</button><button class="mso wincontrols" onclick="ipcRenderer.send('close')">&#xe5cd;</button></div></div>
+            <button class="navbarBtn ib" id="goBack" style="width: calc(33.333% - 12px);"><span
+                class="mso fixcenter">&#xe5e0;</span></button>
+            <button class="navbarBtn ib" id="goForward" style="width: calc(33.333%  - 12px);"><span
+                class="mso fixcenter">&#xe5e1;</span></button>
+            <button class="navbarBtn ib" id="reload" style="width: calc(33.333%  - 12px);"><span
+                class="mso fixcenter rlspn">&#xe5d5;</span></button>
+            <button class="fauxURL" id="fakebox"><img id="favi"> <p id="fakeboxp">Have some text, old friend</p></button>
+              <input class="navbarInput" id="url"></input>
+            
+          </div>
+        </td>
+        <td>
+          <div class="mvDivP">
+            <div class="mvDiv">
+              <webview id="wbv1" class="mainView" src="https://start.me/p/wMn6mP/flame-new-tab" allowpopups></webview>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div hidden class="navbar leftbar">
+    <div class="nvbr">
+
+
+
+
+      <button id="updateURL" class="navbarBtn"><span>↪</span></button>
+      <button id="menu" class="navbarBtn"><span>⁝</span></button>
+
+
+    </div>
+
+    <div class="vtabs">
+      <DIV class="tab"><span>Hi</span></DIV>
+    </div>
+  </div>
+
+
+
+  <!-- You can also require other files to run in this process -->
+  <script src="./renderer.js"></script>
+</body>
+
+</html>

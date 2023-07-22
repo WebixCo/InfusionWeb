@@ -1,0 +1,21 @@
+{
+  "name": "pumped-temper-think-snhuh",
+  "productName": "Flame Browser",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "techs",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron-context-menu": "3.6.1",
+    "electron-reload": "^2.0.0-alpha.1",
+    "get-website-favicon": "^0.0.7",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "electron": "^22.0.2"
+  }
+}

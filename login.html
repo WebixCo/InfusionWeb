@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <style>
+    *{font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+  </style>
+  <h1>Authentication Required</h1>
+  <p id="proxy-info"></p>
+  <form id="login-form">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    const { ipcRenderer } = require('electron')
+
+    ipcRenderer.on('set-proxy-info', (event, host) => {
+      document.getElementById('proxy-info').innerHTML = `The site ${host} is requesting your username and password.`
+    })
+
+    document.getElementById('login-form').addEventListener('submit', (event) => {
+      event.preventDefault()
+      const username = document.getElementById('username').value
+      const password = document.getElementById('password').value
+      ipcRenderer.send('submit-credentials', username, password)
+    })
+  </script>
+</body>
+</html>
