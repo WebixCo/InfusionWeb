@@ -3,8 +3,8 @@ name: Build/release
 on: push
 
 permissions:
-   contents: write
-   
+  contents: write
+
 jobs:
   release:
     runs-on: ${{ matrix.os }}
@@ -14,6 +14,17 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: List repository contents
+        run: ls -al
+
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
