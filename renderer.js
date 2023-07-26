@@ -1,18 +1,50 @@
-/**
- * This file is loaded via the <script> tag in the index.html file and will
- * be executed in the renderer process for that window. No Node.js APIs are
- * available in this process because `nodeIntegration` is turned off and
- * `contextIsolation` is turned on. Use the contextBridge API in `preload.js`
- * to expose Node.js functionality from the main process.
- */
+// TODO:
+// [] Make tab names change
+// [] Add favicons to tabs
+//
 
-var searchUrl = "https://you.com/search?q="
-var inputIs;
+// Importing required modules
 const { ipcRenderer, remote } = require('electron')
+
+// Declaring global variables
+var searchUrl = "https://you.com/search?q="
+var newTabURL = "https://start.me/p/wMn6mP/flame-new-tab"
+var totalWebviews = 1
+var currentWebView = "#wbv2"
+var inputIs;
 let root = document.documentElement;
-function alert(text){
+var settings =
+
+
+// Adding window.alert function
+window.alert = function(text){
     ipcRenderer.send('alert', text)
 }
+
+// Function to remove a tab
+function removeTab(id){
+    document.querySelector("#"+id).remove()
+    document.querySelector("#"+id.replace("tab", "")).remove()
+}
+
+// Function to add a new tab
+function addTab(){
+    totalWebviews = totalWebviews + 1;
+    addthisview = document.createElement("webview")
+    addthisview.src = newTabURL
+    addthisview.id = "wbv" + totalWebviews.toString()
+    addthisview.allowpopups = true
+    addthisview.classList = ['mainView']
+    document.querySelector(".mvDiv").appendChild(addthisview)
+    addthistab = document.createElement("table")
+    addthistab.id = `tabwbv${totalWebviews.toString()}`
+    addthistab.classList = ["tab"]
+    addthistab.innerHTML = `<tr><td class="tabTitle" onclick="changeTab('#wbv${totalWebviews.toString()}')">New Tab</td><td class="tabClose mso" onclick=""><button class="mso textualBtn" onclick="removeTab('tabwbv${totalWebviews.toString()}')">close</button></td></tr>`
+    document.querySelector(".vtabs").appendChild(addthistab)
+    changeTab("#wbv"+totalWebviews.toString())
+}
+
+// Function to check if a URL is valid
 const isValidUrl = urlString => {
     try {
         return Boolean(new URL(urlString));
@@ -22,6 +54,7 @@ const isValidUrl = urlString => {
     }
 }
 
+// Function to check if the input is a URL or a search query
 function urlInputted(url) {
     inputIs = "";
     if (url.includes(" ")) {
@@ -33,13 +66,16 @@ function urlInputted(url) {
     else {
         inputIs = "unknown"
     }
+    
+    // If the input is unknown, display options for search or URL
     if (inputIs == "unknown") {
         document.querySelector("#urlorsearch").innerHTML = "<option value='🔎 "+url+"'><option value='http://"+url+"'>"
-        alert("AAAH")
+        
     }
-    alert("AAAH")
+    
 }
 
+// Event listeners for the URL input field and fakebox
 document.querySelector("#url").addEventListener("oninput", function () { urlInputted(document.querySelector("#url").value) })
 document.querySelector("#fakebox").addEventListener("mouseover", function () { 
     document.querySelector("#url").style.display = "block";
@@ -52,27 +88,29 @@ document.querySelector("#url").addEventListener("blur", function () {
 document.querySelector("#url").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         updateURL()
-        alert()
         console.log()
     }
-  });
-webviewID = "#wbv1"
+});
+
+// Function to update the title and favicon of the page
 function titleFaviUpdate() {
-    document.title = document.querySelector(webviewID).getTitle() + " - 🔥 Flame Browser"
-    document.querySelector("#fakeboxp").innerText = document.querySelector(webviewID).getTitle()
+    document.title = document.querySelector(currentWebView).getTitle() + " - 🔥 Flame Browser"
+    document.querySelector("#fakeboxp").innerText = document.querySelector(currentWebView).getTitle()
 
 }
+
+// Function to update the page when web navigation occurs
 function webNavigated() {
     titleFaviUpdate()
-    document.querySelector("#url").value = document.querySelector(webviewID).getURL()
-    ipcRenderer.send('get-favicon', document.querySelector(webviewID).getURL())
-    if (document.querySelector(webviewID).canGoBack()) {
+    document.querySelector("#url").value = document.querySelector(currentWebView).getURL()
+    ipcRenderer.send('get-favicon', document.querySelector(currentWebView).getURL())
+    if (document.querySelector(currentWebView).canGoBack()) {
         document.querySelector("#goBack").classList.remove("nonvis")
     }
     else {
         document.querySelector("#goBack").classList.add("nonvis")
     }
-    if (document.querySelector(webviewID).canGoForward()) {
+    if (document.querySelector(currentWebView).canGoForward()) {
         document.querySelector("#goForward").classList.remove("nonvis")
     }
     else {
@@ -80,80 +118,85 @@ function webNavigated() {
     }
 }
 
+// Function to perform actions on the webview
 function doWebViewAction(act) {
     if (act == "back") {
-        document.querySelector(webviewID).goBack()
+        document.querySelector(currentWebView).goBack()
     }
     else if (act == "forward") {
-        document.querySelector(webviewID).goForward()
+        document.querySelector(currentWebView).goForward()
     }
     else if (act == "reload") {
-        document.querySelector(webviewID).reload()
+        document.querySelector(currentWebView).reload()
     }
 }
 
+// Function to update the theme
 function themeUpdated(t) {
     root.style.setProperty('--siteColor', t.themeColor);
 }
 
+// Function to update the URL of the webview
 function updateURL(e) {
     if(document.querySelector("#url").value.includes(" ")){
-        document.querySelector(webviewID).src = searchUrl + document.querySelector("#url").value
+        document.querySelector(currentWebView).src = searchUrl + document.querySelector("#url").value
     } else if (document.querySelector("#url").value.includes("/")){
         if(document.querySelector("#url").value.startsWith("http://") || document.querySelector("#url").value.startsWith("https://")){
-            document.querySelector(webviewID).src = document.querySelector("#url").value    
+            document.querySelector(currentWebView).src = document.querySelector("#url").value    
         
         } else{
-            document.querySelector(webviewID).src = "http://" + document.querySelector("#url").value
+            document.querySelector(currentWebView).src = "http://" + document.querySelector("#url").value
         }
         
     } else{
-        document.querySelector(webviewID).src = searchUrl + document.querySelector("#url").value
+        document.querySelector(currentWebView).src = searchUrl + document.querySelector("#url").value
     }
     
 }
+
+// Function to add event listeners to the current tab
+// Function to add event listeners to the current tab
 function tabEvents() {
-    document.querySelector(webviewID).addEventListener("did-navigate", webNavigated)
-    document.querySelector(webviewID).addEventListener("did-navigate-in-page", webNavigated)
-    document.querySelector(webviewID).addEventListener("did-redirect-navigation", webNavigated)
-    document.querySelector(webviewID).addEventListener("page-title-updated", titleFaviUpdate)
-    document.querySelector(webviewID).addEventListener("did-stop-loading", webNavigated)
-    document.querySelector(webviewID).addEventListener("did-frame-finish-load", webNavigated)
-    document.querySelector(webviewID).hidden = false
+    document.querySelector(currentWebView).addEventListener("did-navigate", webNavigated)
+    document.querySelector(currentWebView).addEventListener("did-navigate-in-page", webNavigated)
+    document.querySelector(currentWebView).addEventListener("did-redirect-navigation", webNavigated)
+    document.querySelector(currentWebView).addEventListener("page-title-updated", titleFaviUpdate)
+    document.querySelector(currentWebView).addEventListener("did-stop-loading", webNavigated)
+    document.querySelector(currentWebView).addEventListener("did-frame-finish-load", webNavigated)
 }
+
+// Function to change the current tab
 function changeTab(wbvid) {
-    document.querySelector(webviewID).removeEventListener("did-navigate", webNavigated)
-    document.querySelector(webviewID).removeEventListener("did-navigate-in-page", webNavigated)
-    document.querySelector(webviewID).removeEventListener("did-redirect-navigation", webNavigated)
-    document.querySelector(webviewID).removeEventListener("page-title-updated", titleFaviUpdate)
-    document.querySelector(webviewID).removeEventListener("did-stop-loading", webNavigated)
-    document.querySelector(webviewID).removeEventListener("did-frame-finish-load", webNavigated)
-    document.querySelector(webviewID).hidden = true
-    webviewID = wbvid
+    console.log(currentWebView)
+    document.querySelector(currentWebView).removeEventListener("did-navigate", webNavigated)
+    document.querySelector(currentWebView).removeEventListener("did-navigate-in-page", webNavigated)
+    document.querySelector(currentWebView).removeEventListener("did-redirect-navigation", webNavigated)
+    document.querySelector(currentWebView).removeEventListener("page-title-updated", titleFaviUpdate)
+    document.querySelector(currentWebView).removeEventListener("did-stop-loading", webNavigated)
+    document.querySelector(currentWebView).removeEventListener("did-frame-finish-load", webNavigated)
+    
+    for (const el of document.querySelectorAll("webview")) {
+        el.classList.add("notcurrent")
+    }
+    
+    currentWebView = wbvid
+    document.querySelector(wbvid).classList.remove("notcurrent")
+    document.querySelector(wbvid).style.display = "block !important"
+
     tabEvents()
+    webNavigated()
+    ipcRenderer.send('get-favicon', document.querySelector(currentWebView).getURL())
 }
 
-
-document.querySelector("#updateURL").addEventListener("click", updateURL)
-document.querySelector("#goForward").addEventListener("click", function () { doWebViewAction("forward") })
-document.querySelector("#goBack").addEventListener("click", function () { doWebViewAction("back") })
-document.querySelector("#reload").addEventListener("click", function () { doWebViewAction("reload") })
-tabEvents()
-/** SNIPETS
-document.querySelector(webviewID).goBack()
-document.querySelector(webviewID).goForward()
-document.querySelector(webviewID).addEventListener("")
-document.querySelector(webviewID).canGoForward()
-document.querySelector(webviewID).reload()
-document.querySelector(webviewID).addEventListener("did-navigate", function(){
-    document.querySelector("#url").value = document.querySelector(webviewID).src
-})
-*/
+// Event listeners for proxy sign in and favicon result
 ipcRenderer.on('proxysignedin', (event, host) => {
-    document.querySelector(webviewID).reload()
+    document.querySelector(currentWebView).reload()
 })
 ipcRenderer.on('favicon-result', (event, result) => {
     // do something with result
     document.querySelector("#favi").src = result
     console.log(result)
 })
+
+// There is no tab by default
+addTab()

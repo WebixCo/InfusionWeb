@@ -180,6 +180,7 @@ ipcMain.on('get-favicon', async (event, url) => {
 ipcMain.on('alert', async (event, text) => {
   // call the getWebsiteFavicon function here
   dialog.showMessageBox({message:text})
+  console.log(text)
 });
 ipcMain.on('close', () => {
   mainWindow.close()
