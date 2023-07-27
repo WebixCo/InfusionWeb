@@ -3,7 +3,7 @@
 // [] Add favicons to tabs
 //
 
-// Importing required modules
+// Importing required modules   
 const { ipcRenderer, remote } = require('electron')
 
 // Declaring global variables
