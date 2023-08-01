@@ -1,4 +1,4 @@
-# Flame Next <img src="https://github.com/FoxsDenYT/Flame-Next/blob/main/build/icon.png?raw=true" height=25>
+# Flame Next <img src="bit.ly/3YfYRak" height=25>
 <h6>Flame Next, a simple alternative to Arc browser for Windows, Linux, and Mac. Built with ⚡Electron.</h6>
 Flame Next is a simple and elegant alternative to the Arc browser, available for Windows, Linux, and Mac. It is built with the power of Electron.
 
