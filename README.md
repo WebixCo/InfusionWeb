@@ -1,6 +1,7 @@
 # Flame Next <img src="http://bit.ly/3YfYRak" height=25>
 <h6>Flame Next, a simple alternative to Arc browser for Windows, Linux, and Mac. Built with ⚡Electron.</h6>
 Flame Next is a simple and elegant alternative to the Arc browser, available for Windows, Linux, and Mac.
+
 ## Design
 Flame Next is designed with the aesthetics of Arc in mind. The design files are available on Figma for your perusal.
 View Figma Prototype
