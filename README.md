@@ -15,4 +15,5 @@ Information about future features and updates can be found on the Projects page.
 
 ## Donations
 I currently do not accept donations. The highest praise you can give is a subscription to my YouTube channel, Fox's Den
+
 <a href="http://youtube.com/@FoxsDen"><img style="border-radius:25px !important" src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"></a>
