@@ -1,0 +1,80 @@
+# Configuration for Label Actions - https://github.com/dessant/label-actions
+
+# The `heated` label is added to issues, pull requests or discussions
+closed-cantfix:
+  # Post a comment
+  comment: >
+    We have closed this as there is currently no fix.
+  # Lock the thread
+  lock: true
+  # Set a lock reason
+  lock-reason: 'no possible fix'
+  # Additionally, add a label to pull requests
+  prs:
+    label: 'closed-cantfix'
+
+# The `heated` label is removed from issues, pull requests or discussions
+-closed-cantfix:
+  # Unlock the thread
+  unlock: true
+
+closed-fixed:
+  # Post a comment
+  comment: >
+    This has been fixed. Please check the latest version.
+  # Lock the thread
+  lock: true
+  # Set a lock reason
+  lock-reason: 'fixed'
+  # Additionally, add a label to pull requests
+  prs:
+    label: 'fixed'
+# The `heated` label is added to issues, pull requests or discussions
+closed-wontfix:
+  # Post a comment
+  comment: >
+    We have closed this as we will not be working on it.
+  # Lock the thread
+  lock: true
+  # Set a lock reason
+  lock-reason: 'Wont fix'
+  # Additionally, add a label to pull requests
+  prs:
+    label: 'closed-wontfix'
+
+# The `heated` label is removed from issues, pull requests or discussions
+-closed-wontfix:
+  # Unlock the thread
+  unlock: true
+  
+# The `heated` label is added to issues, pull requests or discussions
+closed-wontfix:
+  # Post a comment
+  comment: >
+    ‼️ This appears to be a duplicate issue
+  # Lock the thread
+  lock: false
+  # Set a lock reason
+  lock-reason: 'duplicate'
+  # Additionally, add a label to pull requests
+  prs:
+    label: 'duplicate'
+
+    # The `heated` label is added to issues, pull requests or discussions
+fixed:
+  # Post a comment
+  comment: >
+    We have closed this as we will not be working on it.
+  # Lock the thread
+  lock: true
+  # Set a lock reason
+  lock-reason: 'Wont fix'
+  # Additionally, add a label to pull requests
+  prs:
+    label: 'closed-cantfix'
+
+        # The `heated` label is added to issues, pull requests or discussions
+question:
+  # Post a comment
+  comment: >
+    @{issue-author} We need further information.
