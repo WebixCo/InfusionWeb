@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flame Next</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?sz=64&family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: none;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 24px;
+            background-color: white;
+
+        }
+        .search-container input[type=text] {
+            padding: 12px 20px;
+            margin: 8px 8px;
+            margin-right: 0px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 24px;
+            width: 25vw;
+            max-height: 48px;
+            height: 48px;
+        }
+        .search-container button {
+            padding: 12px 20px;
+            margin: 8px 8px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 24px;
+            max-height: 48px;
+            height: 48px;
+        }
+        .search-container button:hover {
+            background-color: #3e8e41;
+        }
+        .shortcuts-container {
+            display:flex; 
+            align-items:center; 
+            justify-content:center
+        }
+        .shortcut {
+          display:flex; 
+          flex-direction:column; 
+          align-items:center; 
+          text-decoration:none; 
+          color:black; 
+          margin-right:20px
+        }
+        .shortcut img {
+          width:48px; 
+          height:auto; 
+          margin-bottom:10px
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥</h1>
+        <div class="title">Flame Next</div>
+        <div class="search-container">
+              <input type="text" placeholder="Search with you.com">
+              <button id="search"><i class="material-icons-outlined">search</i></button>
+      </div>
+      <div class="shortcuts-container">
+          <a href="https://www.youtube.com" class="shortcut">
+              <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com" alt="YouTube Favicon">
+              YouTube
+          </a>
+          <a href="https://www.spotify.com" class="shortcut">
+              <img src="https://www.google.com/s2/favicons?sz=64&domain=spotify.com" alt="Spotify Favicon">
+              Spotify
+          </a>
+          <a href="https://github.com/foxsdenyt/Flame-Next" class="shortcut">
+              <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com" alt="GitHub Favicon">
+              GitHub Repo
+          </a>
+      </div>
+    </div>
+</body>
+</html>

@@ -26,16 +26,19 @@
                 class="mso fixcenter rlspn">&#xe5d5;</span></button>
             <button class="fauxURL" id="fakebox"><img id="favi"> <p id="fakeboxp"></p></button>
               <input class="navbarInput" id="url"></input>
-              
+              <button onclick="addTab()" class="navbarBtn fwidth" style="display: inline-block !important;"><span
+                class="mso" style="display: inline-block !important;font-size: 17px;position: relative;top: 3px !important;">add</span> New Tab</button>
               <div class="vtabs">
-                <button onclick="addTab()">New Tab</button>
+                
                 <!-- <table class="tab" id="tabwbv1"><tr><td class="tabTitle">Tab</td><td class="tabClose mso" onclick=""><button class="mso textualBtn" onclick="removeTab('tabwbv1')">close</button></td></tr></table> -->
               </div>
           </div>
         </td>
         <td>
           <div class="mvDivP">
+            
             <div class="mvDiv">
+              <webview class="backview mainview" id="notabs" style="z-index: -100;height: 100%;" src="notabs.html"></webview>
               <!-- <webview id="wbv1" class="mainView" src="https://start.me/p/wMn6mP/flame-new-tab" allowpopups></webview> -->
             </div>
           </div>
@@ -61,6 +64,7 @@
 
 
   <!-- You can also require other files to run in this process -->
+  <iframe title="Wow how did you find me?" src="http://www.google.com"></iframe>
   <script src="./renderer.js"></script>
 </body>
 

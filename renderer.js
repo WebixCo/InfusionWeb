@@ -8,9 +8,9 @@ const { ipcRenderer, remote } = require('electron')
 
 // Declaring global variables
 var searchUrl = "https://you.com/search?q="
-var newTabURL = "https://start.me/p/wMn6mP/flame-new-tab"
+var newTabURL = "./newtab.html"
 var totalWebviews = 1
-var currentWebView = "#wbv2"
+var currentWebView = "#wbv1"
 var inputIs;
 let root = document.documentElement;
 var settings =
@@ -25,6 +25,7 @@ window.alert = function(text){
 function removeTab(id){
     document.querySelector("#"+id).remove()
     document.querySelector("#"+id.replace("tab", "")).remove()
+    if(document.querySelectorAll("webview").length == 1){document.querySelector("webview").classList.remove("notcurrent")}
 }
 
 // Function to add a new tab
@@ -198,5 +199,5 @@ ipcRenderer.on('favicon-result', (event, result) => {
     console.log(result)
 })
 
+document.DOMContentLoaded = function(){addTab()}
 // There is no tab by default
-addTab()

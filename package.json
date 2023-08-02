@@ -1,10 +1,10 @@
 {
-  "name": "pumped-temper-think-snhuh",
+  "name": "com.foxsden.flamenext",
   "productName": "Flame Next",
   "description": "A semi-revolutionary browser for most (if not all) desktop platforms.",
   "keywords": [],
   "main": "./main.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Fox's Den (foxsden.glitch.me",
   "scripts": {
     "start": "electron ."
