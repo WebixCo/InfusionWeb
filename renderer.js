@@ -7,13 +7,12 @@
 const { ipcRenderer, remote } = require('electron')
 
 // Declaring global variables
-var searchUrl = "https://you.com/search?q="
-var newTabURL = "./newtab.html"
-var totalWebviews = 1
+localStorage.searchUrl = "https://you.com/search?q="
+localStorage.newTabURL = "./newtab.html"
+var totalWebviews = 0;
 var currentWebView = "#wbv1"
 var inputIs;
 let root = document.documentElement;
-var settings =
 
 
 // Adding window.alert function
@@ -32,16 +31,17 @@ function removeTab(id){
 function addTab(){
     totalWebviews = totalWebviews + 1;
     addthisview = document.createElement("webview")
-    addthisview.src = newTabURL
+    addthisview.src = localStorage.newTabURL
     addthisview.id = "wbv" + totalWebviews.toString()
     addthisview.allowpopups = true
     addthisview.classList = ['mainView']
     document.querySelector(".mvDiv").appendChild(addthisview)
     addthistab = document.createElement("table")
-    addthistab.id = `tabwbv${totalWebviews.toString()}`
+    addthistab.id = `tabwbv`+totalWebviews.toString()
     addthistab.classList = ["tab"]
-    addthistab.innerHTML = `<tr><td class="tabTitle" onclick="changeTab('#wbv${totalWebviews.toString()}')">New Tab</td><td class="tabClose mso" onclick=""><button class="mso textualBtn" onclick="removeTab('tabwbv${totalWebviews.toString()}')">close</button></td></tr>`
+    addthistab.innerHTML = '<tr><td class="tabTitle">New Tab</td><td class="tabClose mso"><button class="mso textualBtn" onclick="removeTab(`tabwbv'+totalWebviews.toString()+'`)">close</button></td></tr>'
     document.querySelector(".vtabs").appendChild(addthistab)
+    addthistab.onclick = "changeTab('"+addthistab.id+"')"
     changeTab("#wbv"+totalWebviews.toString())
 }
 
@@ -103,7 +103,10 @@ function titleFaviUpdate() {
 // Function to update the page when web navigation occurs
 function webNavigated() {
     titleFaviUpdate()
-    document.querySelector("#url").value = document.querySelector(currentWebView).getURL()
+    if(document.querySelector(currentWebView).getURL().includes(__dirname.replace("\\","/"))){
+        document.querySelector("#url").value = 
+    }
+    document.querySelector("#url").value = 
     ipcRenderer.send('get-favicon', document.querySelector(currentWebView).getURL())
     if (document.querySelector(currentWebView).canGoBack()) {
         document.querySelector("#goBack").classList.remove("nonvis")
@@ -139,8 +142,9 @@ function themeUpdated(t) {
 
 // Function to update the URL of the webview
 function updateURL(e) {
+    console.log(currentWebView)
     if(document.querySelector("#url").value.includes(" ")){
-        document.querySelector(currentWebView).src = searchUrl + document.querySelector("#url").value
+        document.querySelector(currentWebView).src = localStorage.searchUrl + document.querySelector("#url").value
     } else if (document.querySelector("#url").value.includes("/")){
         if(document.querySelector("#url").value.startsWith("http://") || document.querySelector("#url").value.startsWith("https://")){
             document.querySelector(currentWebView).src = document.querySelector("#url").value    
@@ -150,7 +154,7 @@ function updateURL(e) {
         }
         
     } else{
-        document.querySelector(currentWebView).src = searchUrl + document.querySelector("#url").value
+        document.querySelector(currentWebView).src = localStorage.searchUrl + document.querySelector("#url").value
     }
     
 }
@@ -179,7 +183,8 @@ function changeTab(wbvid) {
     for (const el of document.querySelectorAll("webview")) {
         el.classList.add("notcurrent")
     }
-    
+    document.querySelector(".backview").classList.add("notcurrent")
+    document.querySelector(".backview").style.display = "none !important"
     currentWebView = wbvid
     document.querySelector(wbvid).classList.remove("notcurrent")
     document.querySelector(wbvid).style.display = "block !important"
