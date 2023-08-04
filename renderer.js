@@ -104,9 +104,9 @@ function titleFaviUpdate() {
 function webNavigated() {
     titleFaviUpdate()
     if(document.querySelector(currentWebView).getURL().includes(__dirname.replace("\\","/"))){
-        document.querySelector("#url").value = 
+        document.querySelector("#url").value = "flame://internalPageGoesHere"
     }
-    document.querySelector("#url").value = 
+    document.querySelector("#url").value = document.querySelector(currentWebView).getURL()
     ipcRenderer.send('get-favicon', document.querySelector(currentWebView).getURL())
     if (document.querySelector(currentWebView).canGoBack()) {
         document.querySelector("#goBack").classList.remove("nonvis")
