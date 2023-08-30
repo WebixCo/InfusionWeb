@@ -1,13 +1,10 @@
-# Flame Next <img src="http://bit.ly/3YfYRak" height=25>
-<h6>Flame Next, a simple alternative to Arc browser for Windows, Linux, and Mac. Built with ⚡Electron.</h6>
-Flame Next is a simple and elegant alternative to the Arc browser, available for Windows, Linux, and Mac.
+# WebixCo InfusionWeb
+<h6>InfusionWeb, a simple alternative to Arc browser for Windows, Linux, and Mac. Built with ⚡Electron.</h6>
 
 ## Design
-Flame Next is designed with the aesthetics of Arc in mind. The design files are available on Figma for your perusal.
-View Figma Prototype
-
+InfusionWeb is designed to maximise the size of the user's screen by having a single line addressbar & tabs, and a side panel.
 ## Building
-Pre-built versions of Flame Next will be available in the Releases section of the repository. These builds are generated using electron-builder on my laptop (yes this is developed on a laptop).
+Pre-built versions of InfusionWeb will be available in the Releases section of the repository. These builds are generated using electron-builder on my laptop (yes this is developed on a laptop).
 
 If you prefer to build Flame Next for your own system, you can do so using `electron-builder`, which is included in the `node_modules` directory. You will need node-js, and npm. Once installed, download the repository, extract the zip and go into the root (where index.html is) and open a terminal and type `npx electron-builder` then open the dist folder and install the file.
 
