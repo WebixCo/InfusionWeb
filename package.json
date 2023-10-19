@@ -1,11 +1,11 @@
 {
-  "name": "com.foxsden.flamenext",
-  "productName": "Flame Next",
+  "name": "com.Webix.Infusion.Web",
+  "productName": "InfusionWeb",
   "description": "A semi-revolutionary browser for most (if not all) desktop platforms.",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.1",
-  "author": "Fox's Den (foxsden.glitch.me",
+  "author": "Fox's Den (infusion.web@foxsden.is-a.dev)",
   "scripts": {
     "start": "electron ."
   },
